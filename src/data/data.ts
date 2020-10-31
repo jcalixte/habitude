@@ -8,7 +8,7 @@ interface GetAllParams {
 }
 
 class Data {
-  private locale = new PouchDb('local-db', {
+  private locale = new PouchDb('local-habitude', {
     adapter: 'indexeddb'
   })
 
