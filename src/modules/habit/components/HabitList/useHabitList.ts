@@ -1,15 +1,7 @@
-import { data } from '@/data/data'
-import { DataType } from '@/data/Datatype.enum'
-import { Model } from '@/data/models/Model'
+import { useQueryHabitList } from '@/modules/habit/hooks/useQueryHabitList.hook'
 
-interface HabitListResult {
-  habits: Model<DataType.Habit>[]
-}
-
-export const useHabitList = async (): Promise<HabitListResult> => {
-  const habits = await data.getAll<DataType.Habit, Model<DataType.Habit>>({
-    prefix: DataType.Habit
-  })
+export const useHabitList = async () => {
+  const { habits } = useQueryHabitList()
 
   return {
     habits
