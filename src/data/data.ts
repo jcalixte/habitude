@@ -62,6 +62,10 @@ class Data {
 
     return response.rows.map((row) => row.doc) as T[]
   }
+
+  public getId(...args: string[]) {
+    return args.join('-')
+  }
 }
 
 export const data = new Data()
