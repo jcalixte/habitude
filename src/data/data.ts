@@ -1,6 +1,9 @@
 import PouchDb from 'pouchdb-browser'
 import { DataType } from './Datatype.enum'
 import { Model } from './models/Model'
+import indexedDb from 'pouchdb-adapter-indexeddb'
+
+PouchDb.plugin(indexedDb)
 
 interface GetAllParams {
   prefix?: string
