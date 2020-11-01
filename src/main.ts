@@ -1,5 +1,4 @@
 import '@/registerServiceWorker'
-
 import App from './App.vue'
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
