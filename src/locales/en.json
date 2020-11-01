@@ -1,4 +1,9 @@
 {
   "hello": "Hello World",
-  "toggle-lang": "Toggle lang"
+  "toggle-lang": "Toggle lang",
+  "habit": {
+    "new": {
+      "form-title": "Create a new habit"
+    }
+  }
 }
