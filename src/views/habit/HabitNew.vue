@@ -1,6 +1,6 @@
 <template>
   <section class="habit-new">
-    {{ t('habit.new.form-title') }}
+    <h1 class="title is-1">{{ t('habit.new.form-title') }}</h1>
   </section>
 </template>
 

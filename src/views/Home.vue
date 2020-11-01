@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <router-link :to="{ name: 'HabitNew' }" class="button is-primary"
+      >create a new habit</router-link
+    >
     <HabitList />
   </div>
 </template>
