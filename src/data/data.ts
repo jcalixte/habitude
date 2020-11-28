@@ -20,7 +20,9 @@ class Data {
     try {
       const result = await this.locale.put(model)
       return result.ok
-    } catch {
+    } catch (error) {
+      console.log('error', { error })
+
       return false
     }
   }
