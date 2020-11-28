@@ -1,5 +1,5 @@
 <template>
-  <div class="habit-list-item"></div>
+  <div class="habit-list-item">{{ habit }}</div>
 </template>
 
 <script lang="ts">

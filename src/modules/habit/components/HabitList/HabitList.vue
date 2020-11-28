@@ -1,13 +1,11 @@
 <template>
   <section class="habit-list">
-    <HabitListItem v-for="habit in habits" :key="habit._id">
-      {{ habit }}
-    </HabitListItem>
+    <HabitListItem v-for="habit in habits" :habit="habit" :key="habit._id" />
   </section>
 </template>
 
 <script lang="ts">
-import { useHabitList } from './useHabitList'
+import { useHabitList } from './useHabitList.hook'
 import HabitListItem from '@/modules/habit/components/HabitListItem/HabitListItem.vue'
 
 export default {
@@ -15,8 +13,8 @@ export default {
   components: {
     HabitListItem
   },
-  async setup() {
-    const { habits } = await useHabitList()
+  setup() {
+    const { habits } = useHabitList()
 
     return {
       habits
