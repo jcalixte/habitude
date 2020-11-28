@@ -7,7 +7,7 @@ import { router } from '@/router/router'
 import { store } from '@/store/store'
 
 const i18n = createI18n({
-  locale: 'en',
+  locale: 'fr',
   messages
 })
 

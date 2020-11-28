@@ -1,9 +1,8 @@
 {
-  "hello": "Bonjour le monde",
-  "toggle-lang": "Changer la langue",
   "habit": {
     "new": {
       "form-title": "Créer une nouvelle habitude"
-    }
+    },
+    "name": "Nom"
   }
 }
