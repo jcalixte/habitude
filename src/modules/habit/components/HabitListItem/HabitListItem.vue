@@ -1,26 +1,48 @@
 <template>
   <div class="habit-list-item" @click="createOccurence(new Date())">
-    <component
-      :is="habitComponent"
-      :habit="habit"
-      :occurences="occurences.length"
-    />
+    <div class="progression" :style="progressStyle"></div>
+    <div class="text">
+      <span class="habit-name">{{ habit.name }}</span>
+      <span class="info numeric">
+        <span class="habit-goal">{{ habit.goal }}</span>
+        <router-link
+          :to="{ name: 'HabitDetails', params: { id: habit._id ?? '' } }"
+          class="button is-icon"
+          @click.stop
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-dots-circle-horizontal"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#6f32be"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <line x1="8" y1="12" x2="8" y2="12.01" />
+            <line x1="12" y1="12" x2="12" y2="12.01" />
+            <line x1="16" y1="12" x2="16" y2="12.01" />
+          </svg>
+        </router-link>
+      </span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Habit } from '@/data/models/Habit'
-import { defineComponent, PropType } from 'vue'
-import HabitImprove from '@/modules/habit/components/HabitImprove/HabitImprove.vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { useCreateOccurence } from '@/modules/occurence/hooks/useCreateOccurence.hook'
 import { useRemoveOccurence } from '@/modules/occurence/hooks/useRemoveOccurence.hook'
 import { useQueryOccurenceList } from '@/modules/occurence/hooks/useQueryOccurenceList.hook'
 
 export default defineComponent({
   name: 'HabitListItem',
-  components: {
-    HabitImprove
-  },
   props: {
     habit: { required: true, type: Object as PropType<Habit> }
   },
@@ -35,8 +57,17 @@ export default defineComponent({
       props.habit.periodicity
     )
 
+    const percentage = computed(() => {
+      const ratio = occurences.value.length / props.habit.goal
+      return Math.min(100, ratio * 100)
+    })
+
+    const progressStyle = computed(() => ({
+      width: `${percentage.value}%`
+    }))
+
     return {
-      habitComponent: `habit-${props.habit.habitType}`,
+      progressStyle,
       createOccurence,
       removeOccurence,
       occurences
@@ -47,5 +78,31 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .habit-list-item {
+  position: relative;
+  background-color: #dfe4ea;
+
+  .text {
+    position: relative;
+    padding: 0.5rem 1rem;
+    font-size: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .progression {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #70a1ff;
+    transition: width 0.3s ease-out;
+  }
+
+  .info,
+  .habit-name {
+    display: flex;
+    align-items: center;
+  }
 }
 </style>

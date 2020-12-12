@@ -60,7 +60,9 @@ class Data {
     id: string
   ): Promise<T | null> {
     try {
-      return ((await this.locale.get(id)) as T) || null
+      const result = ((await this.locale.get(id)) as T) || null
+
+      return result
     } catch {
       return null
     }
