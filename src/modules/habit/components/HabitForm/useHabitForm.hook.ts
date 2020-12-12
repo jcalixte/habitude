@@ -9,7 +9,7 @@ export const useHabitForm = () => {
     createdAt: new Date().toISOString(),
     habitType: 'improve',
     periodicity: 'daily',
-    goal: 0
+    goal: 1
   })
 
   return {

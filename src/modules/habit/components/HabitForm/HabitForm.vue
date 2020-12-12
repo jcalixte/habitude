@@ -64,7 +64,7 @@
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHabitForm } from './useHabitForm.hook'
-import { useMutationHabit } from '@/modules/habit/hooks/useMutationHabit.hook'
+import { useCreateHabit } from '@/modules/habit/hooks/useCreateHabit.hook'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -73,10 +73,10 @@ export default defineComponent({
     const { t } = useI18n()
     const { push } = useRouter()
     const { habit } = useHabitForm()
-    const { mutateHabit } = useMutationHabit()
+    const { createHabit } = useCreateHabit()
 
     const submit = async () => {
-      if (await mutateHabit(habit)) {
+      if (await createHabit(habit)) {
         push({
           name: 'Home'
         })

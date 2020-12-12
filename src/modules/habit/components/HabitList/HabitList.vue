@@ -1,6 +1,11 @@
 <template>
-  <section class="habit-list">
-    <HabitListItem v-for="habit in habits" :habit="habit" :key="habit._id" />
+  <section class="habit-list columns is-multiline">
+    <HabitListItem
+      v-for="habit in habits"
+      :habit="habit"
+      :key="habit._id"
+      class="habit-list-item column is-8"
+    />
   </section>
 </template>
 
@@ -25,5 +30,14 @@ export default {
 
 <style scoped lang="scss">
 .habit-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .habit-list-item {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
 }
 </style>
