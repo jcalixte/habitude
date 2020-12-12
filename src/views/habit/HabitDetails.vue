@@ -1,5 +1,5 @@
 <template>
-  <div class="habit-details">
+  <div class="habit-details" v-if="ready">
     <p>
       {{
         t('habit.details.totalOccurences', occurences.length, {
@@ -37,7 +37,7 @@ export default defineComponent({
   },
   setup(props) {
     const { t } = useI18n()
-    const { occurences } = useQueryOccurenceList(props.id)
+    const { occurences, ready } = useQueryOccurenceList(props.id)
     const { createOccurence } = useCreateOccurence(props.id ?? '')
     const { removeOccurence } = useRemoveOccurence(props.id)
     const maxDate = new Date()
@@ -52,6 +52,7 @@ export default defineComponent({
 
     return {
       t,
+      ready,
       occurences,
       calendarAttributes,
       removeOccurence,

@@ -10,6 +10,7 @@ export const useQueryOccurenceList = (
   habitId: string,
   periodicity?: Periodicity
 ) => {
+  const ready = ref(false)
   const occurences = ref<Occurence[]>([])
   const fetchOccurences = async () => {
     if (periodicity) {
@@ -31,6 +32,7 @@ export const useQueryOccurenceList = (
         prefix: data.getId(DataType.Occurence, habitId)
       })
     }
+    ready.value = true
   }
 
   onMounted(async () => {
@@ -43,6 +45,7 @@ export const useQueryOccurenceList = (
   })
 
   return {
-    occurences
+    occurences,
+    ready
   }
 }
