@@ -1,8 +1,12 @@
 {
+  "toggle-lang": "Changer de langue",
   "habit": {
     "new": {
       "form-title": "Créer une nouvelle habitude"
     },
-    "name": "Nom"
+    "name": "Nom",
+    "details": {
+      "totalOccurences": "Il n'y a pas d'occurence | Il y a une occurence | En tout, il y a {totalOccurences} occurences."
+    }
   }
 }

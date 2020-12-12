@@ -1,9 +1,12 @@
 {
-  "hello": "Hello World",
   "toggle-lang": "Toggle lang",
   "habit": {
     "new": {
       "form-title": "Create a new habit"
+    },
+    "name": "Name",
+    "details": {
+      "totalOccurences": "There is no occurences | There is one occurence | In total, there are {totalOccurences} occurences."
     }
   }
 }
