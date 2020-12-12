@@ -7,7 +7,11 @@
         })
       }}
     </p>
-    <Calendar :attributes="calendarAttributes" />
+    <Calendar
+      :attributes="calendarAttributes"
+      @dayclick="createOccurence"
+      :max-date="maxDate"
+    />
     <button class="button is-danger" @click="removeOccurence">
       remove last occurence
     </button>
@@ -19,7 +23,9 @@ import { useQueryOccurenceList } from '@/modules/occurence/hooks/useQueryOccuren
 import { computed, defineComponent } from 'vue'
 import { Calendar } from 'v-calendar'
 import { useRemoveOccurence } from '@/modules/occurence/hooks/useRemoveOccurence.hook'
+import { useCreateOccurence } from '@/modules/occurence/hooks/useCreateOccurence.hook'
 import { useI18n } from 'vue-i18n'
+import { isAfter } from 'date-fns'
 
 export default defineComponent({
   name: 'HabitDetails',
@@ -32,7 +38,9 @@ export default defineComponent({
   setup(props) {
     const { t } = useI18n()
     const { occurences } = useQueryOccurenceList(props.id)
+    const { createOccurence } = useCreateOccurence(props.id ?? '')
     const { removeOccurence } = useRemoveOccurence(props.id)
+    const maxDate = new Date()
     const calendarAttributes = computed(() => [
       {
         dot: true,
@@ -46,7 +54,17 @@ export default defineComponent({
       t,
       occurences,
       calendarAttributes,
-      removeOccurence
+      removeOccurence,
+      maxDate,
+      createOccurence: ({ id }: { id: string }) => {
+        const selectedDate = new Date(id)
+
+        if (isAfter(selectedDate, new Date())) {
+          return
+        }
+
+        createOccurence(new Date(id))
+      }
     }
   }
 })
