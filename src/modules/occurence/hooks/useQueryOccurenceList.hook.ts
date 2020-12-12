@@ -8,20 +8,29 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 export const useQueryOccurenceList = (
   habitId: string,
-  periodicity: Periodicity
+  periodicity?: Periodicity
 ) => {
   const occurences = ref<Occurence[]>([])
   const fetchOccurences = async () => {
-    const [startDate, endDate] = getRangeOfPeriodicity(periodicity, new Date())
+    if (periodicity) {
+      const [startDate, endDate] = getRangeOfPeriodicity(
+        periodicity,
+        new Date()
+      )
 
-    occurences.value = await data.getAll<DataType.Occurence, Occurence>({
-      startKey: data.getId(
-        DataType.Occurence,
-        habitId,
-        startDate.toISOString()
-      ),
-      endKey: data.getId(DataType.Occurence, habitId, endDate.toISOString())
-    })
+      occurences.value = await data.getAll<DataType.Occurence, Occurence>({
+        startKey: data.getId(
+          DataType.Occurence,
+          habitId,
+          startDate.toISOString()
+        ),
+        endKey: data.getId(DataType.Occurence, habitId, endDate.toISOString())
+      })
+    } else {
+      occurences.value = await data.getAll<DataType.Occurence, Occurence>({
+        prefix: data.getId(DataType.Occurence, habitId)
+      })
+    }
   }
 
   onMounted(async () => {

@@ -4,7 +4,7 @@ import { useQueryOccurenceList } from './useQueryOccurenceList.hook'
 
 export const useRemoveOccurence = (
   habitId: string,
-  periodicity: Periodicity
+  periodicity?: Periodicity
 ) => {
   const { occurences } = useQueryOccurenceList(habitId, periodicity)
   const removeOccurence = () => {

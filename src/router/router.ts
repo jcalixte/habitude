@@ -16,7 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/habit/new',
     name: 'HabitNew',
     component: () =>
-      import(/* webpackChunkName: "about" */ '@/views/habit/HabitNew.vue')
+      import(/* webpackChunkName: "habit-new" */ '@/views/habit/HabitNew.vue')
+  },
+  {
+    path: '/habit/details/:id',
+    name: 'HabitDetails',
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "habit-details" */ '@/views/habit/HabitDetails.vue'
+      )
   }
 ]
 
