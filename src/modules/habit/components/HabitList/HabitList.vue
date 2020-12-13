@@ -1,5 +1,5 @@
 <template>
-  <section class="habit-list columns is-multiline">
+  <section class="habit-list columns no-margin is-multiline">
     <HabitListItem
       v-for="habit in habits"
       :habit="habit"

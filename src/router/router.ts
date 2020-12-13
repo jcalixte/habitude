@@ -19,6 +19,14 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "habit-new" */ '@/views/habit/HabitNew.vue')
   },
   {
+    path: '/habit/Calendar',
+    name: 'HabitCalendar',
+    component: () =>
+      import(
+        /* webpackChunkName: "habit-calendar" */ '@/views/habit/HabitCalendar.vue'
+      )
+  },
+  {
     path: '/habit/details/:id',
     name: 'HabitDetails',
     props: true,

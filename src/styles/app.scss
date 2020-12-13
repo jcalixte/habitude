@@ -5,8 +5,22 @@
 body {
   text-align: center;
   user-select: none;
+  min-height: 100vh;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .numeric {
   font-family: 'Overpass Mono', monospace;
+}
+
+.columns.no-margin {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
 }

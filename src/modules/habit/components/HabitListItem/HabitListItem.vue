@@ -97,7 +97,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .habit-list-item {
   position: relative;
-  background-color: #dfe4ea;
+  background-color: #f7f7f7;
 
   .text {
     position: relative;

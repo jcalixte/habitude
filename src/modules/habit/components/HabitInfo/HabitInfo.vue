@@ -47,7 +47,11 @@ export default defineComponent({
   setup(props) {
     const { t } = useI18n()
     const { occurences, ready } = useQueryOccurenceList(props.habit._id ?? '')
-    const { isSuccess } = useInfoHabit(props.habit, occurences)
+    const { occurences: currentOccurences } = useQueryOccurenceList(
+      props.habit._id ?? '',
+      props.habit.periodicity
+    )
+    const { isSuccess } = useInfoHabit(props.habit, currentOccurences)
     const { createOccurence } = useCreateOccurence(props.habit._id ?? '')
     const { removeOccurence } = useRemoveOccurence(props.habit._id ?? '')
     const maxDate = new Date()
