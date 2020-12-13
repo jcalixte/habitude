@@ -15,7 +15,9 @@ const getStartOfPeriodicity = (periodicity: Periodicity, date: Date) => {
     case 'daily':
       return startOfDay(date)
     case 'weekly':
-      return startOfWeek(date)
+      return startOfWeek(date, {
+        weekStartsOn: 1
+      })
     case 'monthly':
       return startOfMonth(date)
     case 'yearly':
@@ -28,7 +30,9 @@ const getEndOfPeriodicity = (periodicity: Periodicity, date: Date) => {
     case 'daily':
       return endOfDay(date)
     case 'weekly':
-      return endOfWeek(date)
+      return endOfWeek(date, {
+        weekStartsOn: 1
+      })
     case 'monthly':
       return endOfMonth(date)
     case 'yearly':
