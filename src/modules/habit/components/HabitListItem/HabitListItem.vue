@@ -40,6 +40,7 @@ import { computed, defineComponent, PropType } from 'vue'
 import { useCreateOccurence } from '@/modules/occurence/hooks/useCreateOccurence.hook'
 import { useRemoveOccurence } from '@/modules/occurence/hooks/useRemoveOccurence.hook'
 import { useQueryOccurenceList } from '@/modules/occurence/hooks/useQueryOccurenceList.hook'
+import seedrandom from 'seedrandom'
 
 export default defineComponent({
   name: 'HabitListItem',
@@ -63,7 +64,9 @@ export default defineComponent({
     })
 
     const progressStyle = computed(() => ({
-      width: `${percentage.value}%`
+      width: `${percentage.value}%`,
+      'background-color': `hsl(${seedrandom(props.habit._id)() *
+        360}, 70%, 80%)`
     }))
 
     return {
@@ -95,7 +98,6 @@ export default defineComponent({
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: #70a1ff;
     transition: width 0.3s ease-out;
   }
 
