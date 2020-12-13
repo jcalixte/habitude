@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&family=Fira+Sans&display=swap');
 
 $primary: #42803d;
 
@@ -14,6 +14,7 @@ $primary: #42803d;
 @import '~bulma/sass/layout/section.sass';
 
 body {
+  font-family: 'Fira Sans', sans-serif;
   text-align: center;
   user-select: none;
   min-height: 100vh;
