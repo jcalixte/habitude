@@ -2,7 +2,7 @@
   "toggle-lang": "Toggle lang",
   "habit": {
     "new": {
-      "form-title": "Create a new habit"
+      "form-title": "New habit"
     },
     "name": "Name",
     "details": {

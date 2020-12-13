@@ -2,7 +2,7 @@
   "toggle-lang": "Changer de langue",
   "habit": {
     "new": {
-      "form-title": "Créer une nouvelle habitude"
+      "form-title": "Nouvelle habitude"
     },
     "name": "Nom",
     "details": {
