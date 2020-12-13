@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+  <main>
+    <router-view />
+  </main>
   <nav>
     <router-link :to="{ name: 'HabitNew' }">
       <svg
@@ -83,5 +85,9 @@ nav {
   display: flex;
   justify-content: space-around;
   margin: 1rem 0;
+}
+
+main {
+  overflow-y: auto;
 }
 </style>
