@@ -1,4 +1,4 @@
-const mainColor = '#3f4fa6'
+const mainColor = '#42803d'
 
 module.exports = {
   pwa: {
