@@ -1,7 +1,11 @@
 <template>
-  <div class="habit-list-item" @click="createOccurence(new Date())">
+  <div
+    class="habit-list-item"
+    @click="createOccurence(new Date())"
+    :style="itemStyle"
+  >
     <div class="progression" :style="progressStyle"></div>
-    <div class="text">
+    <div class="text" :style="textStyle">
       <span class="habit-name">
         {{ habit.name }}
         <span v-if="isSuccess">🎉</span>
@@ -78,12 +82,23 @@ export default defineComponent({
         360}, 70%, 80%)`
     }))
 
+    const itemStyle = computed(() => ({
+      'background-color': `hsl(${seedrandom(props.habit._id)() *
+        360}, 70%, 96%)`
+    }))
+
+    const textStyle = computed(() => ({
+      color: `hsl(${seedrandom(props.habit._id)() * 360}, 70%, 20%)`
+    }))
+
     const count = computed(() =>
       Math.max(occurences.value.length, props.habit.goal)
     )
 
     return {
       progressStyle,
+      itemStyle,
+      textStyle,
       createOccurence,
       removeOccurence,
       occurences,
@@ -98,6 +113,11 @@ export default defineComponent({
 .habit-list-item {
   position: relative;
   background-color: #f7f7f7;
+  min-width: 300px;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   .text {
     position: relative;

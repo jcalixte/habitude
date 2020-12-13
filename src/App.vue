@@ -1,6 +1,26 @@
 <template>
   <router-view />
   <nav>
+    <router-link :to="{ name: 'HabitNew' }">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-circle-plus"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#42803d"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <line x1="9" y1="12" x2="15" y2="12" />
+        <line x1="12" y1="9" x2="12" y2="15" />
+      </svg>
+    </router-link>
+
     <router-link to="/">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +43,7 @@
         <line x1="11" y1="18" x2="20" y2="18" />
       </svg>
     </router-link>
+
     <router-link to="/habit/calendar">
       <svg
         xmlns="http://www.w3.org/2000/svg"

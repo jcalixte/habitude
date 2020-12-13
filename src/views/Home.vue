@@ -1,9 +1,5 @@
 <template>
   <div class="home">
-    <router-link :to="{ name: 'HabitNew' }" class="button is-primary"
-      >create a new habit</router-link
-    >
-    <hr />
     <habit-list />
   </div>
 </template>
@@ -19,3 +15,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+</style>
