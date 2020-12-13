@@ -1,11 +1,11 @@
 <template>
   <form @submit.prevent="submit" class="habit-form">
     <div class="field">
-      <label for="name" class="label">{{ t('habit.name') }}</label>
+      <label for="habit-name" class="label">{{ t('habit.name') }}</label>
       <div class="control">
         <input
-          name="name"
-          id="name"
+          id="habit-name"
+          name="habit-name"
           class="input"
           type="text"
           v-model="habit.name"
@@ -30,8 +30,8 @@
       <div class="control">
         <div class="select">
           <select
-            name="periodicity"
             id="periodicity"
+            name="periodicity"
             v-model="habit.periodicity"
           >
             <option value="daily">Quotidienne</option>
@@ -47,8 +47,8 @@
       <label for="goal" class="label">Objectif</label>
       <div class="control">
         <input
-          name="goal"
           id="goal"
+          name="goal"
           type="number"
           class="input"
           v-model="habit.goal"
