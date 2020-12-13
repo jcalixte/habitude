@@ -2,9 +2,12 @@
   <div class="habit-list-item" @click="createOccurence(new Date())">
     <div class="progression" :style="progressStyle"></div>
     <div class="text">
-      <span class="habit-name">{{ habit.name }}</span>
+      <span class="habit-name">
+        {{ habit.name }}
+        <span v-if="isSuccess">🎉</span>
+      </span>
       <span class="info numeric">
-        <span class="habit-goal">{{ habit.goal }}</span>
+        <span class="habit-goal">{{ count }}</span>
         <router-link
           :to="{ name: 'HabitDetails', params: { id: habit._id ?? '' } }"
           class="button is-icon"
@@ -41,6 +44,7 @@ import { useCreateOccurence } from '@/modules/occurence/hooks/useCreateOccurence
 import { useRemoveOccurence } from '@/modules/occurence/hooks/useRemoveOccurence.hook'
 import { useQueryOccurenceList } from '@/modules/occurence/hooks/useQueryOccurenceList.hook'
 import seedrandom from 'seedrandom'
+import { useInfoHabit } from '../../hooks/useInfoHabit.hook'
 
 export default defineComponent({
   name: 'HabitListItem',
@@ -57,6 +61,11 @@ export default defineComponent({
       props.habit._id ?? '',
       props.habit.periodicity
     )
+    const isSuccess = computed(() => {
+      const { isSuccess } = useInfoHabit(props.habit, occurences)
+
+      return isSuccess.value
+    })
 
     const percentage = computed(() => {
       const ratio = occurences.value.length / props.habit.goal
@@ -69,11 +78,17 @@ export default defineComponent({
         360}, 70%, 80%)`
     }))
 
+    const count = computed(() =>
+      Math.max(occurences.value.length, props.habit.goal)
+    )
+
     return {
       progressStyle,
       createOccurence,
       removeOccurence,
-      occurences
+      occurences,
+      isSuccess,
+      count
     }
   }
 })
