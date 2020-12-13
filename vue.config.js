@@ -8,7 +8,7 @@ module.exports = {
       skipWaiting: true,
       clientsClaim: true
     },
-    name: 'Habitude',
+    name: 'Quency',
     manifestOptions: {
       background_color: mainColor,
       theme_color: mainColor,
