@@ -19,9 +19,14 @@
       :max-date="maxDate"
     />
     <hr />
-    <button class="button is-danger" @click="removeOccurence">
-      remove last occurence
-    </button>
+    <div class="buttons is-centered">
+      <button class="button is-danger" @click="removeOccurence">
+        {{ t('occurence.removeLast') }}
+      </button>
+      <button class="button is-danger" @click="removeAndGoToHome">
+        {{ t('habit.delete') }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -34,7 +39,9 @@ import { useInfoHabit } from '@/modules/habit/hooks/useInfoHabit.hook'
 import { useI18n } from 'vue-i18n'
 import { useCreateOccurence } from '@/modules/occurence/hooks/useCreateOccurence.hook'
 import { useRemoveOccurence } from '@/modules/occurence/hooks/useRemoveOccurence.hook'
+import { useRemoveHabit } from '@/modules/habit/hooks/useRemoveHabit.hook'
 import { isAfter } from 'date-fns'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'HabitInfo',
@@ -45,6 +52,7 @@ export default defineComponent({
     habit: { type: Object as PropType<Habit>, required: true }
   },
   setup(props) {
+    const router = useRouter()
     const { t } = useI18n()
     const { occurences, ready } = useQueryOccurenceList(props.habit._id ?? '')
     const { occurences: currentOccurences } = useQueryOccurenceList(
@@ -53,6 +61,7 @@ export default defineComponent({
     )
     const { isSuccess } = useInfoHabit(props.habit, currentOccurences)
     const { createOccurence } = useCreateOccurence(props.habit._id ?? '')
+    const { removeHabit } = useRemoveHabit(props.habit._id ?? '')
     const { removeOccurence } = useRemoveOccurence(props.habit._id ?? '')
     const maxDate = new Date()
     const calendarAttributes = computed(() => [
@@ -64,6 +73,12 @@ export default defineComponent({
       }
     ])
 
+    const removeAndGoToHome = async () => {
+      if (await removeHabit()) {
+        router.push('/')
+      }
+    }
+
     return {
       t,
       ready,
@@ -71,6 +86,7 @@ export default defineComponent({
       occurences,
       calendarAttributes,
       removeOccurence,
+      removeAndGoToHome,
       maxDate,
       createOccurence: ({ id }: { id: string }) => {
         const selectedDate = new Date(id)

@@ -1,7 +1,8 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&family=Fira+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cousine&family=Fira+Sans&display=swap');
 
 $primary: #42803d;
+$nav-height: 65px;
 
 @import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/sass/base/_all.sass';
@@ -13,15 +14,20 @@ $primary: #42803d;
 @import '~bulma/sass/layout/hero.sass';
 @import '~bulma/sass/layout/section.sass';
 
+html {
+  overflow-y: auto;
+}
+
 body {
   font-family: 'Fira Sans', sans-serif;
   text-align: center;
   user-select: none;
-  min-height: 100vh;
+  min-height: calc(100vh - #{$nav-height});
+  margin-bottom: $nav-height;
+  overflow-y: hidden;
 }
 
 #app {
-  min-height: 100vh;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,11 +35,20 @@ body {
 }
 
 .numeric {
-  font-family: 'Overpass Mono', monospace;
+  font-family: Cousine, monospace;
 }
 
 .columns.no-margin {
   margin-top: 0;
   margin-left: 0;
   margin-right: 0;
+}
+
+.router-link-active {
+  background-color: $primary;
+  border-radius: 50%;
+
+  svg {
+    stroke: white;
+  }
 }

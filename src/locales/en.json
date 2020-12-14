@@ -7,6 +7,10 @@
     "name": "Name",
     "details": {
       "totalOccurences": "There is no occurences | There is one occurence | In total, there are {totalOccurences} occurences."
-    }
+    },
+    "delete": "Supprimer l'habitude"
+  },
+  "occurence": {
+    "removeLast": "remove last occurence"
   }
 }

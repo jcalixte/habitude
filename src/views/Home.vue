@@ -22,5 +22,6 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   flex: 1;
+  margin-top: 1rem;
 }
 </style>
